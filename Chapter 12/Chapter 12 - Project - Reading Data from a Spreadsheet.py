@@ -7,7 +7,7 @@ import openpyxl, pprint
 print('Opening workbook...')
 wb = openpyxl.load_workbook('censuspopdata.xlsx')
 
-sheet = wb.get_sheet_by_name('Population by Census Tract')
+sheet = wb['Population by Census Tract']
 countyData = {} # creating empty Dictionary variable
 
 ''' example of how 'countyData' variable will look like:
@@ -22,7 +22,7 @@ e.x.     countyData['AK']['Bethel']['pop'] is equal to 17 013.
 pattern: countyData[stateAbbv][county]['pop']
                                                                  '''
 print('Reading rows...')
-for row in range(2, sheet.get_highest_row()+1 ):
+for row in range(2, sheet.max_row + 1):
     #Each row in the spreadsheet has data for one census tract.
     state  = sheet['B' + str(row)].value
     county = sheet['C' + str(row)].value
